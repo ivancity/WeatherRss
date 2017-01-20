@@ -12,7 +12,14 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    private let appCoordinator: AppCoordinator
+    
+    override init() {
+        let window = UIWindow()
+        self.window = window
+        appCoordinator = AppCoordinator(window: window)
+        super.init()
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
