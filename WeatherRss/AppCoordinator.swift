@@ -18,7 +18,14 @@ class AppCoordinator: Coordinator {
     
     func start() -> UIViewController {
         let splashCoordinator = SplashCoordinator()
+        splashCoordinator.coordinatorDelegate = self
         return splashCoordinator.start()
     }
-    
+}
+
+extension AppCoordinator: SplashCoordinatorDelegate {
+    func splashCoordinatorFinished() {
+        //TODO Load a new ViewController screen in window
+        print("new view controller on screen")
+    }
 }

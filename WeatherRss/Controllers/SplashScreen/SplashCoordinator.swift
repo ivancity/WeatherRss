@@ -13,15 +13,24 @@ protocol SplashCoordinatorDelegate: class {
 }
 
 class SplashCoordinator: Coordinator {
-    weak var delegate: SplashCoordinatorDelegate?
+    weak var coordinatorDelegate: SplashCoordinatorDelegate?
     private let splashVc: SplashViewController
-    //    private let viewModel: SplashViewModel
+    private let viewModel: SplashViewModel
     
     init() {
-        splashVc = SplashViewController()
+        viewModel = SplashViewModel()
+        splashVc = SplashViewController(viewModel: viewModel)
+        //viewModel.coordinatorDelegate = self
     }
     
     func start() -> UIViewController {
+        viewModel.coordinatorDelegate = self
         return splashVc
+    }
+}
+
+extension SplashCoordinator: SplashViewModelCoordinatorDelegate {
+    func fetchCompleted() {
+        coordinatorDelegate?.splashCoordinatorFinished()
     }
 }
