@@ -9,6 +9,7 @@
 import Foundation
 
 class ForecastDate {
+    var type: xmlElements
     var phenomenon: String?
     var tempMin: Int?
     var tempMax: Int?
@@ -22,4 +23,8 @@ class ForecastDate {
     var tempMinFormatted: String?
     var tempMaxFormatted: String?
     var tempPhrase: String?
+    
+    init(type: xmlElements) {
+        self.type = type
+    }
 }

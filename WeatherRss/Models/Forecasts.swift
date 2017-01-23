@@ -9,5 +9,5 @@
 import Foundation
 
 class Forecasts {
-    var forecasts: [Forecast] = []
+    var forecasts: [Forecast]?
 }
