@@ -29,9 +29,9 @@ enum xmlElements: String {
 class WeatherDataManager: NSObject {
     
     private var xmlParser: XMLParser?
-    //var forecasts: Forecasts?
     fileprivate var forecastsArray: [Forecast]?
     fileprivate var placeArray: [Place]?
+    fileprivate var windArray: [Wind]?
     fileprivate var forecast: Forecast?
     fileprivate var forecasts: Forecasts?
     fileprivate var forecastDate: ForecastDate?
@@ -46,28 +46,51 @@ class WeatherDataManager: NSObject {
         xmlParser?.parse()
     }
     
-    fileprivate func handleElementData(element: xmlElements, data: String) {
+    fileprivate func handle(element: xmlElements, data: String) {
         switch element {
         case .phenomenon:
-            if forecastDate != nil {
+            if place == nil {
                 self.forecastDate?.phenomenon = data
                 return
             }
-            if place != nil {
-                self.place?.phenomenon = data
-                return
-            }
+            self.place?.phenomenon = data
         case .tempmin:
-            if forecastDate != nil {
-                self.forecastDate?.phenomenon = data
+            guard let temp = Int(data) else {
                 return
             }
-            if place != nil {
-                self.place?.phenomenon = data
+            if place == nil {
+                self.forecastDate?.tempMin = temp
                 return
             }
+            self.place?.tempMin = temp
+        case .tempmax:
+            guard let temp = Int(data) else {
+                return
+            }
+            if place == nil {
+                self.forecastDate?.tempMax = temp
+                return
+            }
+            self.place?.tempMax = temp
+        case .text:
+            forecastDate?.description = data
+        case .name:
+            place?.name = data
+            wind?.name = data
+        case .speedmin:
+            guard let speed = Int(data) else {
+                return
+            }
+            wind?.speedMin = speed
+        case .speedmax:
+            guard let speed = Int(data) else {
+                return
+            }
+            wind?.speedMax = speed
+        case .direction:
+            wind?.direction = data
         default:
-            print("handleElementData: " + data)
+            print("handleElementData missing: " + data)
         }
     }
 }
@@ -84,30 +107,64 @@ extension WeatherDataManager: XMLParserDelegate {
         case .forecast:
             forecast = Forecast()
             if let date = attributeDict["date"] {
-                print("ATTRIBUTE DATE " + date)
                 forecast?.date = date
             }
         case .night:
             forecastDate = ForecastDate(type: .night)
+            placeArray = []
+            windArray = []
+        case .day:
+            forecastDate = ForecastDate(type: .day)
+            placeArray = []
+            windArray = []
+        case .place:
+            place = Place()
+        case .wind:
+            wind = Wind()
         case .phenomenon:
             currentElement = .phenomenon
         case .tempmin:
             currentElement = .tempmin
-        default:
-            print("didStartElement: " + elementName)
+        case .tempmax:
+            currentElement = .tempmax
+        case .text:
+            currentElement = .text
+        case .name:
+            currentElement = .name
+        case .speedmin:
+            currentElement = .speedmin
+        case .speedmax:
+            currentElement = .speedmax
+        case .direction:
+            currentElement = .direction
         }
     }
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         guard let currentElement = currentElement else {
             return
         }
+        guard !string.isEmpty && !string.contains("\n") else {
+            return
+        }
         switch currentElement {
         case .phenomenon:
-            handleElementData(element: .phenomenon, data: string)
+            handle(element: .phenomenon, data: string)
         case .tempmin:
-            handleElementData(element: .tempmin, data: string)
+            handle(element: .tempmin, data: string)
+        case .tempmax:
+            handle(element: .tempmax, data: string)
+        case .text:
+            handle(element: .text, data: string)
+        case .name:
+            handle(element: .name, data: string)
+        case .speedmin:
+            handle(element: .speedmin, data: string)
+        case .speedmax:
+            handle(element: .speedmax, data: string)
+        case .direction:
+            handle(element: .direction, data: string)
         default:
-            print("foundCharacters: " + string)
+            print("foundCharacters not handled: " + string)
         }
     }
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
@@ -115,28 +172,41 @@ extension WeatherDataManager: XMLParserDelegate {
             return
         }
         switch xmlElement {
-        case .phenomenon:
-            print("end phenomenon")
+        case .place:
+            if let place = place {
+                placeArray?.append(place)
+            }
+            place = nil
+        case .wind:
+            if let wind = wind {
+                windArray?.append(wind)
+            }
+            wind = nil
         case .night:
-            if forecast != nil && forecastDate != nil{
-                forecast?.night = forecastDate
-            }
+            forecastDate?.placeArray = placeArray
+            forecastDate?.windArray = windArray
+            forecast?.night = forecastDate
+            placeArray = nil
+            windArray = nil
+            forecastDate = nil
+        case .day:
+            forecastDate?.placeArray = placeArray
+            forecastDate?.windArray = windArray
+            forecast?.day = forecastDate
+            forecastDate = nil
+            placeArray = nil
+            windArray = nil
         case .forecast:
-            if forecastsArray != nil && forecast != nil {
-                forecastsArray?.append(forecast!)
-                forecast = nil
+            if let forecast = forecast {
+                forecastsArray?.append(forecast)
             }
+            forecast = nil
         case .forecasts:
-            if forecasts != nil && forecastsArray != nil{
-                forecasts?.forecasts = forecastsArray
-                forecastsArray = nil
-            }
+            forecasts?.forecasts = forecastsArray
+            forecastsArray = nil
         default:
-            print("didEndElement: " + elementName)
+            return
         }
-        
-        
-        
     }
     func parserDidEndDocument(_ parser: XMLParser) {
         print("didEndElement")
