@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		192B80021E3696CC00763027 /* NavigationControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192B80011E3696CC00763027 /* NavigationControllerCoordinator.swift */; };
+		192B80051E369BBB00763027 /* TableViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192B80041E369BBB00763027 /* TableViewCoordinator.swift */; };
+		192B80071E369D3900763027 /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192B80061E369D3900763027 /* TableViewModel.swift */; };
+		192B80091E369E4600763027 /* ForecastListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192B80081E369E4600763027 /* ForecastListViewController.swift */; };
 		195A7A5F1E322144006FA6B4 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A7A5E1E322144006FA6B4 /* Coordinator.swift */; };
 		195A7A6E1E3227DC006FA6B4 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A7A6D1E3227DC006FA6B4 /* AppCoordinator.swift */; };
 		195A7A741E322E33006FA6B4 /* SplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A7A731E322E33006FA6B4 /* SplashCoordinator.swift */; };
@@ -28,6 +32,10 @@
 
 /* Begin PBXFileReference section */
 		1663479A2807F7BAFBCC16E6 /* Pods_WeatherRss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherRss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		192B80011E3696CC00763027 /* NavigationControllerCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationControllerCoordinator.swift; path = Controllers/NavigationController/NavigationControllerCoordinator.swift; sourceTree = "<group>"; };
+		192B80041E369BBB00763027 /* TableViewCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewCoordinator.swift; path = Controllers/ForecastList/TableViewCoordinator.swift; sourceTree = "<group>"; };
+		192B80061E369D3900763027 /* TableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewModel.swift; path = Controllers/ForecastList/TableViewModel.swift; sourceTree = "<group>"; };
+		192B80081E369E4600763027 /* ForecastListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ForecastListViewController.swift; path = Controllers/ForecastList/ForecastListViewController.swift; sourceTree = "<group>"; };
 		195A7A5E1E322144006FA6B4 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		195A7A6D1E3227DC006FA6B4 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		195A7A731E322E33006FA6B4 /* SplashCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplashCoordinator.swift; path = Controllers/SplashScreen/SplashCoordinator.swift; sourceTree = "<group>"; };
@@ -62,9 +70,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		192B80001E36965100763027 /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				192B80011E3696CC00763027 /* NavigationControllerCoordinator.swift */,
+			);
+			name = NavigationController;
+			sourceTree = "<group>";
+		};
+		192B80031E369B8900763027 /* ForecastList */ = {
+			isa = PBXGroup;
+			children = (
+				192B80041E369BBB00763027 /* TableViewCoordinator.swift */,
+				192B80061E369D3900763027 /* TableViewModel.swift */,
+				192B80081E369E4600763027 /* ForecastListViewController.swift */,
+			);
+			name = ForecastList;
+			sourceTree = "<group>";
+		};
 		195A7A711E322DCD006FA6B4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				192B80031E369B8900763027 /* ForecastList */,
+				192B80001E36965100763027 /* NavigationController */,
 				195A7A721E322DF2006FA6B4 /* SplashScreen */,
 			);
 			name = Controllers;
@@ -306,13 +334,17 @@
 				195A7A871E35FCDF006FA6B4 /* ForecastDate.swift in Sources */,
 				195A7A761E322E74006FA6B4 /* SplashViewController.swift in Sources */,
 				195A7A7E1E32683D006FA6B4 /* WeatherRssFeedService.swift in Sources */,
+				192B80021E3696CC00763027 /* NavigationControllerCoordinator.swift in Sources */,
 				195A7A851E35FB7B006FA6B4 /* Forecast.swift in Sources */,
 				195A7A781E324953006FA6B4 /* SplashViewModel.swift in Sources */,
 				195A7A7B1E325C38006FA6B4 /* UIAlertController+Extensions.swift in Sources */,
 				195A7A8D1E3601E6006FA6B4 /* Wind.swift in Sources */,
 				195A7A891E35FEED006FA6B4 /* Forecasts.swift in Sources */,
+				192B80091E369E4600763027 /* ForecastListViewController.swift in Sources */,
+				192B80051E369BBB00763027 /* TableViewCoordinator.swift in Sources */,
 				195A7A831E35F6DE006FA6B4 /* WeatherDataManager.swift in Sources */,
 				195A7A5F1E322144006FA6B4 /* Coordinator.swift in Sources */,
+				192B80071E369D3900763027 /* TableViewModel.swift in Sources */,
 				195A7A741E322E33006FA6B4 /* SplashCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

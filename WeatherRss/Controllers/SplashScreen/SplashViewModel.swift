@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SplashViewModelCoordinatorDelegate: class {
-    func fetchCompleted()
+    func fetchCompleted(forecasts: Forecasts?)
 }
 
 protocol SplashViewModelViewDelegate: class {
@@ -18,23 +18,16 @@ protocol SplashViewModelViewDelegate: class {
 
 
 class SplashViewModel {
-    
-    weak var coordinatorDelegate: SplashViewModelCoordinatorDelegate? {
-        didSet {
-            getWeatherData()
-        }
-    }
+    var coordinatorDelegate: SplashViewModelCoordinatorDelegate?
     weak var viewDelegate: SplashViewModelViewDelegate?
     
     init() {
-        //getWeatherData()
+        getWeatherData()
     }
     
-    private func getWeatherData() {
-        //TODO do something here to fetch from network all data
-        //self.coordinatorDelegate?.fetchCompleted()
-        
-        WeatherRssFeedService.getWeatherData()
-        
+    func getWeatherData() {
+        WeatherRssFeedService.getWeatherData { forecasts in
+            self.coordinatorDelegate?.fetchCompleted(forecasts: forecasts)
+        }
     }
 }

@@ -8,29 +8,28 @@
 
 import UIKit
 
-protocol SplashCoordinatorDelegate: class {
-    func splashCoordinatorFinished()
+protocol SplashCoordinatorCoordinatorDelegate: class {
+    func splashCoordinatorFinished(forecasts: Forecasts?)
 }
 
 class SplashCoordinator: Coordinator {
-    weak var coordinatorDelegate: SplashCoordinatorDelegate?
+    weak var coordinatorDelegate: SplashCoordinatorCoordinatorDelegate?
     private let splashVc: SplashViewController
     private let viewModel: SplashViewModel
     
     init() {
         viewModel = SplashViewModel()
         splashVc = SplashViewController(viewModel: viewModel)
-        //viewModel.coordinatorDelegate = self
+        viewModel.coordinatorDelegate = self
     }
     
     func start() -> UIViewController {
-        viewModel.coordinatorDelegate = self
         return splashVc
     }
 }
 
 extension SplashCoordinator: SplashViewModelCoordinatorDelegate {
-    func fetchCompleted() {
-        coordinatorDelegate?.splashCoordinatorFinished()
+    func fetchCompleted(forecasts: Forecasts?) {
+        coordinatorDelegate?.splashCoordinatorFinished(forecasts: forecasts)
     }
 }

@@ -33,11 +33,14 @@ class WeatherDataManager: NSObject {
     fileprivate var placeArray: [Place]?
     fileprivate var windArray: [Wind]?
     fileprivate var forecast: Forecast?
-    fileprivate var forecasts: Forecasts?
     fileprivate var forecastDate: ForecastDate?
     fileprivate var place: Place?
     fileprivate var wind: Wind?
     fileprivate var currentElement: xmlElements?
+    fileprivate var forecasts: Forecasts?
+    var allForecast: Forecasts? {
+        return forecasts
+    }
     
     init(data: Data) {
         super.init()

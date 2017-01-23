@@ -23,9 +23,11 @@ class AppCoordinator: Coordinator {
     }
 }
 
-extension AppCoordinator: SplashCoordinatorDelegate {
-    func splashCoordinatorFinished() {
-        //TODO Load a new ViewController screen in window
-        print("new view controller on screen")
+extension AppCoordinator: SplashCoordinatorCoordinatorDelegate {
+    func splashCoordinatorFinished(forecasts: Forecasts?) {
+        print("App Coordinator - new view controller on screen")
+        let navCoordinator = NavigationControllerCoordinator(forecasts: forecasts)
+        currentCoordinator = navCoordinator
+        window.rootViewController = navCoordinator.start()
     }
 }

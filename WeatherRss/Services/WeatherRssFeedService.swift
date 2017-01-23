@@ -9,20 +9,22 @@
 import Foundation
 
 class WeatherRssFeedService {
-    static func getWeatherData() {
+    static func getWeatherData(completion: @escaping ((Forecasts?) -> Void)) {
         let url = "http://www.ilmateenistus.ee/ilma_andmed/xml/forecast.php"
         let requestURL = NSURL(string: url)!
         let urlRequest = NSMutableURLRequest(url: requestURL as URL)
         let session = URLSession.shared.dataTask(with: urlRequest as URLRequest) {
             (data: Data?, response: URLResponse?, error: Error?) -> Void in
-            //TODO handle incoming data 
             if error != nil {
-                //send back some nil value to the claler
+                completion(nil)
                 return
             }
             guard let incomingData = data else { return }
             let manager = WeatherDataManager(data: incomingData)
-            
+            let forecasts = manager.allForecast
+            DispatchQueue.main.async {
+                completion(forecasts)
+            }
         }
         session.resume()
     }
