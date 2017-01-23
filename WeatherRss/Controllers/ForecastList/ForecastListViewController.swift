@@ -37,6 +37,7 @@ extension ForecastListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //TODO prepare UI for cells 
         
     }
     
