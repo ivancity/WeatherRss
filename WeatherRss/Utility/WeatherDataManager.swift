@@ -212,6 +212,6 @@ extension WeatherDataManager: XMLParserDelegate {
         }
     }
     func parserDidEndDocument(_ parser: XMLParser) {
-        print("didEndElement")
+        print("didEndXmlDocument")
     }
 }

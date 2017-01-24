@@ -8,7 +8,17 @@
 
 import Foundation
 
+protocol ListViewModel {
+    associatedtype Value
+    func row(at indexPath: IndexPath) -> Value?
+}
+
 class TableViewModel {
+    
+    enum Row {
+        case firstForecast(Forecast)
+        case forecast(Forecast)
+    }
     
     fileprivate var forecasts: Forecasts?
     
@@ -27,5 +37,17 @@ class TableViewModel {
     
     init(forecasts: Forecasts?) {
         self.forecasts = forecasts
+    }
+}
+
+extension TableViewModel: ListViewModel {
+    func row(at indexPath: IndexPath) -> Row? {
+        guard let forecastArray = forecasts?.forecasts else {
+            return nil
+        }
+        if indexPath.row == 0 {
+            return .firstForecast(forecastArray[indexPath.row])
+        }
+        return .forecast(forecastArray[indexPath.row])
     }
 }
