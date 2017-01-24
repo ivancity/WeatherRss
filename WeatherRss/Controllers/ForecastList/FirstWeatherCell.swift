@@ -37,27 +37,27 @@ class FirstWeatherCell: UITableViewCell {
     private func setupViews() {
         dayLabel.text = "Day"
         nightLabel.text = "Night"
-        //dayTempContainer.addSubview(tempMaxLabel)
-        //dayTempContainer.addSubview(tempMinLabel)
-        //dayWindContainer.addSubview(windMaxLabel)
-        //dayWindContainer.addSubview(windMinLabel)
+        dayTempContainer.addSubview(tempMaxLabel)
+        dayTempContainer.addSubview(tempMinLabel)
+        dayWindContainer.addSubview(windMaxLabel)
+        dayWindContainer.addSubview(windMinLabel)
         contentView.addSubview(date)
         contentView.addSubview(dayLabel)
-        //contentView.addSubview(nightLabel)
-        //contentView.addSubview(dayTempContainer)
-        //contentView.addSubview(dayWindContainer)
-        //contentView.addSubview(tempDescription)
-        //contentView.addSubview(weatherText)
+        contentView.addSubview(dayTempContainer)
+        contentView.addSubview(dayWindContainer)
+        contentView.addSubview(tempDescription)
+        contentView.addSubview(weatherText)
         
+        //contentView.addSubview(nightLabel)
     }
     
     private func addViewStyles() {
         date.font = UIFont.boldSystemFont(ofSize: 16)
-        tempMaxLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        windMaxLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        tempMinLabel.font = UIFont.systemFont(ofSize: 12)
-        windMinLabel.font = UIFont.systemFont(ofSize: 12)
-        dayLabel.font = UIFont.systemFont(ofSize: 12)
+        tempMaxLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        windMaxLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        tempMinLabel.font = UIFont.systemFont(ofSize: 16)
+        windMinLabel.font = UIFont.systemFont(ofSize: 16)
+        dayLabel.font = UIFont.systemFont(ofSize: 18)
         nightLabel.font = UIFont.systemFont(ofSize: 12)
         tempDescription.font = UIFont.systemFont(ofSize: 12)
         weatherText.font = UIFont.systemFont(ofSize: 12)
@@ -72,45 +72,46 @@ class FirstWeatherCell: UITableViewCell {
         dayLabel.snp.makeConstraints { make in
             make.top.equalTo(date.snp.bottom).offset(smallMargin)
             make.centerX.equalTo(contentView)
-            make.bottom.equalTo(contentView).offset(-margin)
         }
         
-        //helper()
-    }
-    
-    func helper() {
         dayTempContainer.snp.makeConstraints { make in
             make.top.equalTo(dayLabel.snp.bottom).offset(smallMargin)
-            make.left.equalTo(contentView).offset(margin)
-            make.width.equalTo(30)
+            make.left.equalTo(contentView)
+            make.right.equalTo(dayWindContainer.snp.left)
+            make.size.equalTo(contentView).dividedBy(2)
         }
         
         dayWindContainer.snp.makeConstraints { make in
             make.top.equalTo(dayLabel.snp.bottom).offset(smallMargin)
-            make.right.equalTo(contentView).offset(margin)
-            make.width.equalTo(30)
+            make.right.equalTo(contentView)
+            make.left.equalTo(dayTempContainer.snp.right)
+            make.size.equalTo(contentView).dividedBy(2)
         }
         
         tempMaxLabel.snp.makeConstraints { make in
             make.top.equalTo(dayTempContainer).offset(smallMargin)
             make.centerX.equalTo(dayTempContainer)
+            make.height.equalTo(dayTempContainer).dividedBy(2)
         }
         
         tempMinLabel.snp.makeConstraints { make in
             make.top.equalTo(tempMaxLabel.snp.bottom).offset(smallMargin)
             make.centerX.equalTo(dayTempContainer)
             make.bottom.equalTo(dayTempContainer).offset(-smallMargin)
+            make.height.equalTo(dayTempContainer).dividedBy(2)
         }
         
         windMaxLabel.snp.makeConstraints { make in
             make.top.equalTo(dayWindContainer).offset(smallMargin)
             make.centerX.equalTo(dayWindContainer)
+            make.height.equalTo(dayWindContainer).dividedBy(2)
         }
         
         windMinLabel.snp.makeConstraints { make in
             make.top.equalTo(windMaxLabel.snp.bottom).offset(smallMargin)
             make.centerX.equalTo(dayWindContainer)
             make.bottom.equalTo(dayWindContainer).offset(-smallMargin)
+            make.height.equalTo(dayWindContainer).dividedBy(2)
         }
         
         tempDescription.snp.makeConstraints { make in
@@ -129,11 +130,11 @@ class FirstWeatherCell: UITableViewCell {
     
     func set(_ forecast: Forecast) {
         date.text = forecast.date
-        //tempMaxLabel.text = String(describing: forecast.day?.tempMax!)
-        //tempMinLabel.text = String(describing: forecast.day?.tempMin!)
-        //windMaxLabel.text = String(describing: forecast.day?.windMax!)
-        //windMinLabel.text = String(describing: forecast.day?.windMin!)
-        //weatherText.text = String(describing: forecast.day?.description!)
+        tempMaxLabel.text = forecast.day?.tempMaxFormatted
+        tempMinLabel.text = forecast.day?.tempMinFormatted
+        windMaxLabel.text = forecast.day?.windMaxFormatted
+        windMinLabel.text = forecast.day?.windMinFormatted
+        weatherText.text = "\((forecast.day?.description)!)"
     }
     
 }

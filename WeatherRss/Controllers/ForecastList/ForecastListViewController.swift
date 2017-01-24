@@ -18,7 +18,7 @@ class ForecastListViewController:  UIViewController {
         super.init(nibName: nil, bundle: nil)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorStyle = .none
+        tableView.separatorStyle = .singleLine
         tableView.register(FirstWeatherCell.self, forCellReuseIdentifier: "firstCell")
         tableView.register(WeatherCell.self, forCellReuseIdentifier: "cell")
     }
