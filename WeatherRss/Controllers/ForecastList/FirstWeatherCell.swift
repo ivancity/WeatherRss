@@ -49,6 +49,7 @@ class FirstWeatherCell: UITableViewCell {
     private func setupViews() {
         dayLabel.text = "Day"
         nightLabel.text = "Night"
+        contentView.addSubview(date)
         setupDayViews()
         setupNightViews()
     }
@@ -74,7 +75,6 @@ class FirstWeatherCell: UITableViewCell {
         dayTempContainer.addSubview(dayTempMinLabel)
         dayWindContainer.addSubview(dayWindMaxLabel)
         dayWindContainer.addSubview(dayWindMinLabel)
-        contentView.addSubview(date)
         contentView.addSubview(dayTempContainer)
         contentView.addSubview(dayWindContainer)
         contentView.addSubview(dayTempDescription)
@@ -87,7 +87,6 @@ class FirstWeatherCell: UITableViewCell {
         nightTempContainer.addSubview(nightTempMinLabel)
         nightWindContainer.addSubview(nightWindMaxLabel)
         nightWindContainer.addSubview(nightWindMinLabel)
-        contentView.addSubview(date)
         contentView.addSubview(nightTempContainer)
         contentView.addSubview(nightWindContainer)
         contentView.addSubview(nightTempDescription)
