@@ -15,7 +15,16 @@ class ForecastDate {
     var tempMax: Int?
     var description: String?
     var placeArray: [Place]?
-    var windArray: [Wind]?
+    var windArray: [Wind]? {
+        didSet {
+            guard let windArray = windArray else {
+                windMin = nil
+                windMax = nil
+                return
+            }
+            sortWindValues(windArray: windArray)
+        }
+    }
     var windMin: Int?
     var windMax: Int?
     var tempMinWord: String?
@@ -26,5 +35,10 @@ class ForecastDate {
     
     init(type: xmlElements) {
         self.type = type
+    }
+    
+    private func sortWindValues(windArray: [Wind]) {
+        windMin = windArray.map{ $0.speedMin! }.min()
+        windMax = windArray.map{ $0.speedMax! }.max()
     }
 }

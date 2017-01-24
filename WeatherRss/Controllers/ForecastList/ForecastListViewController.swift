@@ -11,7 +11,7 @@ import UIKit
 class ForecastListViewController:  UIViewController {
     fileprivate let viewModel: TableViewModel
     fileprivate let tableView = UITableView()
-    
+    fileprivate var estimatedheight: CGFloat?
     
     init(viewModel: TableViewModel) {
         self.viewModel = viewModel
@@ -33,12 +33,27 @@ class ForecastListViewController:  UIViewController {
     }
     
     private func setupTableView() {
-        
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.top.left.right.bottom.equalTo(view)
+        }
     }
     
 }
 
 extension ForecastListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let estimatedheight = estimatedheight else {
+            return 85.5
+        }
+        return estimatedheight
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        estimatedheight = cell.frame.height
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //TODO go to Details of Forecast chosen
     }
