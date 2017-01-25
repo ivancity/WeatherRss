@@ -11,8 +11,26 @@ import Foundation
 class ForecastDate {
     var type: xmlElements
     var phenomenon: String?
-    var tempMin: Int?
-    var tempMax: Int?
+    var tempMin: Int? {
+        didSet {
+            guard let tempMin = tempMin else {
+                tempMinWord = nil
+                return
+            }
+            tempMinWord = NumberFormatter.localizedString(from: tempMin as NSNumber,
+                                                          number: .spellOut)
+        }
+    }
+    var tempMax: Int? {
+        didSet {
+            guard let tempMax = tempMax else {
+                tempMaxWord = nil
+                return
+            }
+            tempMaxWord = NumberFormatter.localizedString(from: tempMax as NSNumber,
+                                                          number: .spellOut)
+        }
+    }
     var windMin: Int?
     var windMax: Int?
     var tempMinFormatted: String {
@@ -42,7 +60,6 @@ class ForecastDate {
     }
     var tempMinWord: String?
     var tempMaxWord: String?
-    var tempPhrase: String?
     var description: String?
     var placeArray: [Place]?
     var windArray: [Wind]? {
@@ -55,9 +72,22 @@ class ForecastDate {
             maxMinWindValues(windArray: windArray)
         }
     }
+    private var tempPhrase: String?
     
     init(type: xmlElements) {
         self.type = type
+    }
+    
+    func temperatureAsPhrase() -> String{
+        guard let tempMinWord = tempMinWord, let tempMaxWord = tempMaxWord else {
+            tempPhrase = nil
+            return "Not enough weather info."
+        }
+        if let tempPhrase = tempPhrase {
+            return tempPhrase
+        }
+        tempPhrase = "As cold as " + tempMinWord + ", and as warm as " + tempMaxWord
+        return tempPhrase!
     }
     
     private func maxMinWindValues(windArray: [Wind]) {

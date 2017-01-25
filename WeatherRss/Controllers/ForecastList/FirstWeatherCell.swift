@@ -101,6 +101,7 @@ class FirstWeatherCell: UITableViewCell {
         dayWindMinLabel.font = UIFont.systemFont(ofSize: 16)
         dayTempDescription.font = UIFont.systemFont(ofSize: 12)
         dayWeatherText.font = UIFont.systemFont(ofSize: 12)
+        dayWeatherText.numberOfLines = 0
     }
     
     private func nightViewStyles() {
@@ -111,6 +112,7 @@ class FirstWeatherCell: UITableViewCell {
         nightWindMinLabel.font = UIFont.systemFont(ofSize: 16)
         nightTempDescription.font = UIFont.systemFont(ofSize: 12)
         nightWeatherText.font = UIFont.systemFont(ofSize: 12)
+        nightWeatherText.numberOfLines = 0
     }
     
     private func dayViewConstraints() {
@@ -243,12 +245,14 @@ class FirstWeatherCell: UITableViewCell {
         dayTempMinLabel.text = forecast.day?.tempMinFormatted
         dayWindMaxLabel.text = forecast.day?.windMaxFormatted
         dayWindMinLabel.text = forecast.day?.windMinFormatted
+        dayTempDescription.text = forecast.day?.temperatureAsPhrase()
         dayWeatherText.text = "\((forecast.day?.description)!)"
         //night binding
         nightTempMaxLabel.text = forecast.night?.tempMaxFormatted
         nightTempMinLabel.text = forecast.night?.tempMinFormatted
         nightWindMaxLabel.text = forecast.night?.windMaxFormatted
         nightWindMinLabel.text = forecast.night?.windMinFormatted
+        nightTempDescription.text = forecast.night?.temperatureAsPhrase()
         nightWeatherText.text = "\((forecast.night?.description)!)"
     }
 }
