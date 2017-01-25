@@ -103,6 +103,7 @@ class FirstWeatherCell: UITableViewCell {
         dayWindMinLabel.font = UIFont.systemFont(ofSize: 18)
         dayTempDescription.font = UIFont.systemFont(ofSize: 14)
         dayWeatherText.font = UIFont.systemFont(ofSize: 14)
+        dayTempDescription.numberOfLines = 0
         dayWeatherText.numberOfLines = 0
         
         dayLabel.textColor = .whiteTwo
@@ -116,12 +117,13 @@ class FirstWeatherCell: UITableViewCell {
     
     private func nightViewStyles() {
         nightLabel.font = UIFont.systemFont(ofSize: 18)
-        nightTempMaxLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        nightWindMaxLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        nightTempMinLabel.font = UIFont.systemFont(ofSize: 16)
-        nightWindMinLabel.font = UIFont.systemFont(ofSize: 16)
-        nightTempDescription.font = UIFont.systemFont(ofSize: 12)
-        nightWeatherText.font = UIFont.systemFont(ofSize: 12)
+        nightTempMaxLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        nightWindMaxLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        nightTempMinLabel.font = UIFont.systemFont(ofSize: 18)
+        nightWindMinLabel.font = UIFont.systemFont(ofSize: 18)
+        nightTempDescription.font = UIFont.systemFont(ofSize: 14)
+        nightWeatherText.font = UIFont.systemFont(ofSize: 14)
+        nightTempDescription.numberOfLines = 0
         nightWeatherText.numberOfLines = 0
         
         nightLabel.textColor = .whiteTwo

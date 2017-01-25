@@ -45,6 +45,7 @@ class WeatherCell: UITableViewCell {
     
     private func addViewStyles() {
         date.font = UIFont.boldSystemFont(ofSize: 16)
+        date.textColor = .whiteTwo
         dayViewStyles()
         nightViewStyles()
     }
@@ -82,18 +83,30 @@ class WeatherCell: UITableViewCell {
     
     private func dayViewStyles() {
         dayLabel.font = UIFont.systemFont(ofSize: 18)
-        daytempMaxTitle.font = UIFont.boldSystemFont(ofSize: 18)
-        daytempMinTitle.font = UIFont.boldSystemFont(ofSize: 18)
-        dayTempMaxLabel.font = UIFont.systemFont(ofSize: 16)
-        dayTempMinLabel.font = UIFont.systemFont(ofSize: 16)
+        daytempMaxTitle.font = UIFont.boldSystemFont(ofSize: 16)
+        daytempMinTitle.font = UIFont.boldSystemFont(ofSize: 16)
+        dayTempMaxLabel.font = UIFont.systemFont(ofSize: 18)
+        dayTempMinLabel.font = UIFont.systemFont(ofSize: 18)
+        
+        dayLabel.textColor = .whiteTwo
+        daytempMaxTitle.textColor = .whiteThree
+        daytempMinTitle.textColor = .whiteThree
+        dayTempMaxLabel.textColor = .white
+        dayTempMinLabel.textColor = .white
     }
     
     private func nightViewStyles() {
         nightLabel.font = UIFont.systemFont(ofSize: 18)
-        nighttempMaxTitle.font = UIFont.boldSystemFont(ofSize: 18)
-        nighttempMinTitle.font = UIFont.boldSystemFont(ofSize: 18)
-        nightTempMaxLabel.font = UIFont.systemFont(ofSize: 16)
-        nightTempMinLabel.font = UIFont.systemFont(ofSize: 16)
+        nighttempMaxTitle.font = UIFont.boldSystemFont(ofSize: 16)
+        nighttempMinTitle.font = UIFont.boldSystemFont(ofSize: 16)
+        nightTempMaxLabel.font = UIFont.systemFont(ofSize: 18)
+        nightTempMinLabel.font = UIFont.systemFont(ofSize: 18)
+    
+        nightLabel.textColor = .whiteTwo
+        nighttempMaxTitle.textColor = .whiteThree
+        nighttempMinTitle.textColor = .whiteThree
+        nightTempMaxLabel.textColor = .white
+        nightTempMinLabel.textColor = .white
     }
     
     private func dayViewConstraints() {
