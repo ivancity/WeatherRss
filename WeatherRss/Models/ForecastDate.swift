@@ -14,6 +14,7 @@ class ForecastDate {
         didSet {
             if let phenomenon = phenomenon {
                 chooseWeatherIcon(phenomenon: phenomenon)
+                return
             }
             icon = nil
         }
@@ -112,6 +113,8 @@ class ForecastDate {
             icon = "🌧"
         } else if phenomenon.contains("snow") {
             icon = "☃️"
+        } else if phenomenon.contains("sleet") {
+            icon = "🌨"
         } else {
             icon = "🌈"
         }

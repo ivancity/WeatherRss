@@ -74,6 +74,7 @@ class FirstWeatherCell: UITableViewCell {
     
     private func setupDayViews() {
         contentView.addSubview(dayLabel)
+        contentView.addSubview(dayIcon)
         dayTempContainer.addSubview(dayTempMaxLabel)
         dayTempContainer.addSubview(dayTempMinLabel)
         dayWindContainer.addSubview(dayWindMaxLabel)
@@ -86,6 +87,7 @@ class FirstWeatherCell: UITableViewCell {
     
     private func setupNightViews() {
         contentView.addSubview(nightLabel)
+        contentView.addSubview(nightIcon)
         nightTempContainer.addSubview(nightTempMaxLabel)
         nightTempContainer.addSubview(nightTempMinLabel)
         nightWindContainer.addSubview(nightWindMaxLabel)
@@ -98,6 +100,7 @@ class FirstWeatherCell: UITableViewCell {
     
     private func dayViewStyles() {
         dayLabel.font = UIFont.systemFont(ofSize: 18)
+        dayIcon.font = UIFont.systemFont(ofSize: 48)
         dayTempMaxLabel.font = UIFont.boldSystemFont(ofSize: 24)
         dayWindMaxLabel.font = UIFont.boldSystemFont(ofSize: 24)
         dayTempMinLabel.font = UIFont.systemFont(ofSize: 18)
@@ -118,6 +121,7 @@ class FirstWeatherCell: UITableViewCell {
     
     private func nightViewStyles() {
         nightLabel.font = UIFont.systemFont(ofSize: 18)
+        nightIcon.font = UIFont.systemFont(ofSize: 48)
         nightTempMaxLabel.font = UIFont.boldSystemFont(ofSize: 24)
         nightWindMaxLabel.font = UIFont.boldSystemFont(ofSize: 24)
         nightTempMinLabel.font = UIFont.systemFont(ofSize: 18)
@@ -142,8 +146,13 @@ class FirstWeatherCell: UITableViewCell {
             make.centerX.equalTo(contentView)
         }
         
-        dayTempContainer.snp.makeConstraints { make in
+        dayIcon.snp.makeConstraints { make in
             make.top.equalTo(dayLabel.snp.bottom).offset(smallMargin)
+            make.centerX.equalTo(contentView)
+        }
+        
+        dayTempContainer.snp.makeConstraints { make in
+            make.top.equalTo(dayIcon.snp.bottom)
             make.left.equalTo(contentView)
             make.right.equalTo(dayWindContainer.snp.left)
             make.height.equalTo(dataHeight)
@@ -151,7 +160,7 @@ class FirstWeatherCell: UITableViewCell {
         }
         
         dayWindContainer.snp.makeConstraints { make in
-            make.top.equalTo(dayLabel.snp.bottom).offset(smallMargin)
+            make.top.equalTo(dayIcon.snp.bottom)
             make.right.equalTo(contentView)
             make.left.equalTo(dayTempContainer.snp.right)
             make.height.equalTo(dataHeight)
@@ -203,8 +212,13 @@ class FirstWeatherCell: UITableViewCell {
             make.centerX.equalTo(contentView)
         }
         
-        nightTempContainer.snp.makeConstraints { make in
+        nightIcon.snp.makeConstraints { make in
             make.top.equalTo(nightLabel.snp.bottom).offset(smallMargin)
+            make.centerX.equalTo(contentView)
+        }
+        
+        nightTempContainer.snp.makeConstraints { make in
+            make.top.equalTo(nightIcon.snp.bottom)
             make.left.equalTo(contentView)
             make.right.equalTo(nightWindContainer.snp.left)
             make.height.equalTo(dataHeight)
@@ -212,7 +226,7 @@ class FirstWeatherCell: UITableViewCell {
         }
         
         nightWindContainer.snp.makeConstraints { make in
-            make.top.equalTo(nightLabel.snp.bottom).offset(smallMargin)
+            make.top.equalTo(nightIcon.snp.bottom)
             make.right.equalTo(contentView)
             make.left.equalTo(nightTempContainer.snp.right)
             make.height.equalTo(dataHeight)
@@ -262,6 +276,7 @@ class FirstWeatherCell: UITableViewCell {
     func set(_ forecast: Forecast) {
         date.text = forecast.date
         //day binding
+        dayIcon.text = forecast.day?.icon
         dayTempMaxLabel.text = forecast.day?.tempMaxFormatted
         dayTempMinLabel.text = forecast.day?.tempMinFormatted
         dayWindMaxLabel.text = forecast.day?.windMaxFormatted
@@ -269,6 +284,7 @@ class FirstWeatherCell: UITableViewCell {
         dayTempDescription.text = forecast.day?.temperatureAsPhrase()
         dayWeatherText.text = "\((forecast.day?.description)!)"
         //night binding
+        nightIcon.text = forecast.night?.icon
         nightTempMaxLabel.text = forecast.night?.tempMaxFormatted
         nightTempMinLabel.text = forecast.night?.tempMinFormatted
         nightWindMaxLabel.text = forecast.night?.windMaxFormatted
