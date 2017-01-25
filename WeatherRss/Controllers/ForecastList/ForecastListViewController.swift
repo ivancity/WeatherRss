@@ -16,6 +16,7 @@ class ForecastListViewController:  UIViewController {
     init(viewModel: TableViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        title = "Forecasts"
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .singleLine

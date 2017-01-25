@@ -38,6 +38,7 @@ class WeatherDataManager: NSObject {
     fileprivate var wind: Wind?
     fileprivate var currentElement: xmlElements?
     fileprivate var forecasts: Forecasts?
+    fileprivate var tempString: String?
     var allForecast: Forecasts? {
         return forecasts
     }
@@ -50,15 +51,24 @@ class WeatherDataManager: NSObject {
     }
     
     fileprivate func handle(element: xmlElements, data: String) {
+        let trimmedData = data.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        if trimmedData.isEmpty {
+            return
+        }
+        if tempString != nil {
+            tempString = tempString! + trimmedData
+        } else {
+            tempString = trimmedData
+        }
         switch element {
         case .phenomenon:
             if place == nil {
-                self.forecastDate?.phenomenon = data
+                self.forecastDate?.phenomenon = tempString!
                 return
             }
-            self.place?.phenomenon = data
+            self.place?.phenomenon = tempString
         case .tempmin:
-            guard let temp = Int(data) else {
+            guard let temp = Int(tempString!) else {
                 return
             }
             if place == nil {
@@ -67,7 +77,7 @@ class WeatherDataManager: NSObject {
             }
             self.place?.tempMin = temp
         case .tempmax:
-            guard let temp = Int(data) else {
+            guard let temp = Int(tempString!) else {
                 return
             }
             if place == nil {
@@ -76,22 +86,22 @@ class WeatherDataManager: NSObject {
             }
             self.place?.tempMax = temp
         case .text:
-            forecastDate?.description = data
+            forecastDate?.description = tempString
         case .name:
-            place?.name = data
-            wind?.name = data
+            place?.name = tempString
+            wind?.name = tempString
         case .speedmin:
-            guard let speed = Int(data) else {
+            guard let speed = Int(tempString!) else {
                 return
             }
             wind?.speedMin = speed
         case .speedmax:
-            guard let speed = Int(data) else {
+            guard let speed = Int(tempString!) else {
                 return
             }
             wind?.speedMax = speed
         case .direction:
-            wind?.direction = data
+            wind?.direction = tempString
         default:
             print("handleElementData missing: " + data)
         }
@@ -146,9 +156,6 @@ extension WeatherDataManager: XMLParserDelegate {
         guard let currentElement = currentElement else {
             return
         }
-        guard !string.isEmpty && !string.contains("\n") else {
-            return
-        }
         switch currentElement {
         case .phenomenon:
             handle(element: .phenomenon, data: string)
@@ -192,6 +199,7 @@ extension WeatherDataManager: XMLParserDelegate {
             placeArray = nil
             windArray = nil
             forecastDate = nil
+            tempString = nil
         case .day:
             forecastDate?.placeArray = placeArray
             forecastDate?.windArray = windArray
@@ -199,6 +207,7 @@ extension WeatherDataManager: XMLParserDelegate {
             forecastDate = nil
             placeArray = nil
             windArray = nil
+            tempString = nil
         case .forecast:
             if let forecast = forecast {
                 forecastsArray?.append(forecast)
@@ -208,7 +217,10 @@ extension WeatherDataManager: XMLParserDelegate {
             forecasts?.forecasts = forecastsArray
             forecastsArray = nil
         default:
-            return
+            if(xmlElement == .phenomenon) {
+                print("wait")
+            }
+            tempString = nil
         }
     }
     func parserDidEndDocument(_ parser: XMLParser) {
