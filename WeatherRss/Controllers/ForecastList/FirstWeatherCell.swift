@@ -19,6 +19,7 @@ class FirstWeatherCell: UITableViewCell {
     private let dayWeatherText = UILabel()
     private let dayTempContainer = UIView()
     private let dayWindContainer = UIView()
+    private let dayIcon = UILabel()
     //night views
     private let nightLabel = UILabel()
     private let nightTempMaxLabel = UILabel()
@@ -29,6 +30,7 @@ class FirstWeatherCell: UITableViewCell {
     private let nightWeatherText = UILabel()
     private let nightTempContainer = UIView()
     private let nightWindContainer = UIView()
+    private let nightIcon = UILabel()
     //other views
     private let date = UILabel()
     private let margin = 10

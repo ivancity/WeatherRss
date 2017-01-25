@@ -10,7 +10,14 @@ import Foundation
 
 class ForecastDate {
     var type: xmlElements
-    var phenomenon: String?
+    var phenomenon: String? {
+        didSet {
+            if let phenomenon = phenomenon {
+                chooseWeatherIcon(phenomenon: phenomenon)
+            }
+            icon = nil
+        }
+    }
     var tempMin: Int? {
         didSet {
             guard let tempMin = tempMin else {
@@ -73,6 +80,7 @@ class ForecastDate {
         }
     }
     private var tempPhrase: String?
+    var icon: String?
     
     init(type: xmlElements) {
         self.type = type
@@ -94,4 +102,19 @@ class ForecastDate {
         windMin = windArray.map{ $0.speedMin! }.min()
         windMax = windArray.map{ $0.speedMax! }.max()
     }
+    
+    private func chooseWeatherIcon(phenomenon: String) {
+        if phenomenon.contains("cloud") {
+            icon = "☁️"
+        } else if phenomenon.contains("sun") {
+            icon = "🌝"
+        } else if phenomenon.contains("rain") {
+            icon = "🌧"
+        } else if phenomenon.contains("snow") {
+            icon = "☃️"
+        } else {
+            icon = "🌈"
+        }
+    }
+    
 }
