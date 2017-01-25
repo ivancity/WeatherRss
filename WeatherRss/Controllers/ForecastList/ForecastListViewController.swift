@@ -16,7 +16,7 @@ class ForecastListViewController:  UIViewController {
     init(viewModel: TableViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        title = "Forecasts"
+        title = "Forecast"
         tableView.backgroundColor = .skyBlue
         tableView.delegate = self
         tableView.dataSource = self
