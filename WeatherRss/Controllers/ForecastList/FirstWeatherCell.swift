@@ -37,6 +37,7 @@ class FirstWeatherCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = .deepBlue
         setupViews()
         addViewConstraints()
         addViewStyles()
@@ -55,7 +56,8 @@ class FirstWeatherCell: UITableViewCell {
     }
     
     private func addViewStyles() {
-        date.font = UIFont.boldSystemFont(ofSize: 16)
+        date.font = UIFont.boldSystemFont(ofSize: 18)
+        date.textColor = .whiteTwo
         dayViewStyles()
         nightViewStyles()
     }
@@ -95,13 +97,21 @@ class FirstWeatherCell: UITableViewCell {
     
     private func dayViewStyles() {
         dayLabel.font = UIFont.systemFont(ofSize: 18)
-        dayTempMaxLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        dayWindMaxLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        dayTempMinLabel.font = UIFont.systemFont(ofSize: 16)
-        dayWindMinLabel.font = UIFont.systemFont(ofSize: 16)
-        dayTempDescription.font = UIFont.systemFont(ofSize: 12)
-        dayWeatherText.font = UIFont.systemFont(ofSize: 12)
+        dayTempMaxLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        dayWindMaxLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        dayTempMinLabel.font = UIFont.systemFont(ofSize: 18)
+        dayWindMinLabel.font = UIFont.systemFont(ofSize: 18)
+        dayTempDescription.font = UIFont.systemFont(ofSize: 14)
+        dayWeatherText.font = UIFont.systemFont(ofSize: 14)
         dayWeatherText.numberOfLines = 0
+        
+        dayLabel.textColor = .whiteTwo
+        dayTempMaxLabel.textColor = .white
+        dayTempMinLabel.textColor = .white
+        dayWindMaxLabel.textColor = .white
+        dayWindMinLabel.textColor = .white
+        dayTempDescription.textColor = .whiteThree
+        dayWeatherText.textColor = .whiteThree
     }
     
     private func nightViewStyles() {
@@ -113,6 +123,14 @@ class FirstWeatherCell: UITableViewCell {
         nightTempDescription.font = UIFont.systemFont(ofSize: 12)
         nightWeatherText.font = UIFont.systemFont(ofSize: 12)
         nightWeatherText.numberOfLines = 0
+        
+        nightLabel.textColor = .whiteTwo
+        nightTempMaxLabel.textColor = .white
+        nightTempMinLabel.textColor = .white
+        nightWindMaxLabel.textColor = .white
+        nightWindMinLabel.textColor = .white
+        nightTempDescription.textColor = .whiteThree
+        nightWeatherText.textColor = .whiteThree
     }
     
     private func dayViewConstraints() {

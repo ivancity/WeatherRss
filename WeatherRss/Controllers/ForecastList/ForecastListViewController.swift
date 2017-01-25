@@ -17,6 +17,7 @@ class ForecastListViewController:  UIViewController {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         title = "Forecasts"
+        tableView.backgroundColor = .skyBlue
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .singleLine
@@ -38,6 +39,13 @@ class ForecastListViewController:  UIViewController {
         tableView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalTo(view)
         }
+    }
+    
+    fileprivate func cellColor(by row: Int) -> UIColor {
+        if row % 2 == 0 {
+            return .deepBlue
+        }
+        return .skyBlue
     }
     
 }
@@ -82,10 +90,12 @@ extension ForecastListViewController: UITableViewDataSource {
         case .firstForecast(let forecast):
             let firstRow = tableView.dequeueReusableCell(withIdentifier: "firstCell", for: indexPath) as! FirstWeatherCell
             firstRow.set(forecast)
+            firstRow.backgroundColor = cellColor(by: indexPath.row)
             return firstRow
         case .forecast(let forecast):
             let row = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WeatherCell
             row.set(forecast)
+            row.backgroundColor = cellColor(by: indexPath.row)
             return row
         }
     }

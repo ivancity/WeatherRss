@@ -29,6 +29,7 @@
 		196C50001E3214F300BB4CA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196C4FFF1E3214F300BB4CA1 /* AppDelegate.swift */; };
 		196C50071E3214F300BB4CA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 196C50061E3214F300BB4CA1 /* Assets.xcassets */; };
 		196C50121E321D2900BB4CA1 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 196C50111E321D2900BB4CA1 /* Podfile */; };
+		19AF3E151E38A9E90097EC5C /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AF3E141E38A9E90097EC5C /* UIColor+Extensions.swift */; };
 		66E239A1554DBE4A8E37A00C /* Pods_WeatherRss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1663479A2807F7BAFBCC16E6 /* Pods_WeatherRss.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		196C50061E3214F300BB4CA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		196C500B1E3214F300BB4CA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		196C50111E321D2900BB4CA1 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		19AF3E141E38A9E90097EC5C /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Extensions.swift"; path = "Extensions/UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		8926E73CE2B1213B0ADD87F5 /* Pods-WeatherRss.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherRss.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherRss/Pods-WeatherRss.debug.xcconfig"; sourceTree = "<group>"; };
 		99D2ECE93FA04F419580D5C5 /* Pods-WeatherRss.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherRss.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherRss/Pods-WeatherRss.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				195A7A7A1E325C38006FA6B4 /* UIAlertController+Extensions.swift */,
+				19AF3E141E38A9E90097EC5C /* UIColor+Extensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				195A7A8B1E35FF6E006FA6B4 /* Place.swift in Sources */,
 				196C50001E3214F300BB4CA1 /* AppDelegate.swift in Sources */,
 				195A7A871E35FCDF006FA6B4 /* ForecastDate.swift in Sources */,
+				19AF3E151E38A9E90097EC5C /* UIColor+Extensions.swift in Sources */,
 				195A7A761E322E74006FA6B4 /* SplashViewController.swift in Sources */,
 				195A7A7E1E32683D006FA6B4 /* WeatherRssFeedService.swift in Sources */,
 				192B80021E3696CC00763027 /* NavigationControllerCoordinator.swift in Sources */,
