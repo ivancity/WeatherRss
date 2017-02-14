@@ -274,9 +274,9 @@ class FirstWeatherCell: UITableViewCell {
     func set(_ forecast: Forecast) {
         date.text = forecast.date
         //day binding
-        dayIcon.image = resizeImage(
-            image: UIImage(named: (forecast.day?.icon?.rawValue)!)!,
-            newWidth: 100
+        dayIcon.image = getImage(
+            name: (forecast.day?.icon?.rawValue)!,
+            size: 100
         )
         dayTempMaxLabel.text = forecast.day?.tempMaxFormatted
         dayTempMinLabel.text = forecast.day?.tempMinFormatted
@@ -285,9 +285,9 @@ class FirstWeatherCell: UITableViewCell {
         dayTempDescription.text = forecast.day?.temperatureAsPhrase()
         dayWeatherText.text = "\((forecast.day?.description)!)"
         //night binding
-        nightIcon.image = resizeImage(
-            image: UIImage(named: (forecast.night?.icon?.rawValue)!)!,
-            newWidth: 100
+        nightIcon.image = getImage(
+            name: (forecast.night?.icon?.rawValue)!,
+            size: 100
         )
         nightTempMaxLabel.text = forecast.night?.tempMaxFormatted
         nightTempMinLabel.text = forecast.night?.tempMinFormatted
@@ -297,12 +297,9 @@ class FirstWeatherCell: UITableViewCell {
         nightWeatherText.text = "\((forecast.night?.description)!)"
     }
     
-    private func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
-        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newWidth))
-        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newWidth))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage!
+    private func getImage(name: String, size: CGFloat) -> UIImage{
+        let image = UIImage(named: name)!
+        return image.imageResize(sizeChange: CGSize(width: size, height: size))
     }
     
 }

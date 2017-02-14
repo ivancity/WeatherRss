@@ -26,6 +26,7 @@
 		195A7A891E35FEED006FA6B4 /* Forecasts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A7A881E35FEED006FA6B4 /* Forecasts.swift */; };
 		195A7A8B1E35FF6E006FA6B4 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A7A8A1E35FF6E006FA6B4 /* Place.swift */; };
 		195A7A8D1E3601E6006FA6B4 /* Wind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A7A8C1E3601E6006FA6B4 /* Wind.swift */; };
+		19663CF41E5343D000489A2A /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19663CF31E5343D000489A2A /* UIImage+Extensions.swift */; };
 		196C50001E3214F300BB4CA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196C4FFF1E3214F300BB4CA1 /* AppDelegate.swift */; };
 		196C50071E3214F300BB4CA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 196C50061E3214F300BB4CA1 /* Assets.xcassets */; };
 		196C50121E321D2900BB4CA1 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 196C50111E321D2900BB4CA1 /* Podfile */; };
@@ -54,6 +55,7 @@
 		195A7A881E35FEED006FA6B4 /* Forecasts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Forecasts.swift; path = Models/Forecasts.swift; sourceTree = "<group>"; };
 		195A7A8A1E35FF6E006FA6B4 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Place.swift; path = Models/Place.swift; sourceTree = "<group>"; };
 		195A7A8C1E3601E6006FA6B4 /* Wind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Wind.swift; path = Models/Wind.swift; sourceTree = "<group>"; };
+		19663CF31E5343D000489A2A /* UIImage+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Extensions.swift"; path = "Extensions/UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		196C4FFC1E3214F300BB4CA1 /* WeatherRss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherRss.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		196C4FFF1E3214F300BB4CA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		196C50061E3214F300BB4CA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			children = (
 				195A7A7A1E325C38006FA6B4 /* UIAlertController+Extensions.swift */,
 				19AF3E141E38A9E90097EC5C /* UIColor+Extensions.swift */,
+				19663CF31E5343D000489A2A /* UIImage+Extensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				195A7A891E35FEED006FA6B4 /* Forecasts.swift in Sources */,
 				1927A8361E3747FE00C2AA2E /* WeatherCell.swift in Sources */,
 				192B80091E369E4600763027 /* ForecastListViewController.swift in Sources */,
+				19663CF41E5343D000489A2A /* UIImage+Extensions.swift in Sources */,
 				192B80051E369BBB00763027 /* TableViewCoordinator.swift in Sources */,
 				195A7A831E35F6DE006FA6B4 /* WeatherDataManager.swift in Sources */,
 				195A7A5F1E322144006FA6B4 /* Coordinator.swift in Sources */,
