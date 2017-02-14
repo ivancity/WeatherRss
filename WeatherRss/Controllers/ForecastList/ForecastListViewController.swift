@@ -84,17 +84,20 @@ extension ForecastListViewController: UITableViewDataSource {
                 .dequeueReusableCell(withIdentifier: "cell",
                                      for: indexPath)
                 as! WeatherCell
+            emptyCell.selectionStyle = .none
             return emptyCell
         }
         switch rowValue {
         case .firstForecast(let forecast):
             let firstRow = tableView.dequeueReusableCell(withIdentifier: "firstCell", for: indexPath) as! FirstWeatherCell
             firstRow.set(forecast)
+            firstRow.selectionStyle = .none
             firstRow.backgroundColor = cellColor(by: indexPath.row)
             return firstRow
         case .forecast(let forecast):
             let row = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WeatherCell
             row.set(forecast)
+            row.selectionStyle = .none
             row.backgroundColor = cellColor(by: indexPath.row)
             return row
         }

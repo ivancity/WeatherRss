@@ -8,12 +8,23 @@
 
 import Foundation
 
+enum WeatherPhenomenon: String {
+    case cloud = "cloud"
+    case sun = "sun"
+    case rain = "rain"
+    case sleet = "sleet"
+    case snow = "snow"
+    case mist = "mist"
+    case glaze = "glaze"
+    case rainbow = "rainbow"
+}
+
 class ForecastDate {
     var type: xmlElements
     var phenomenon: String? {
         didSet {
             if let phenomenon = phenomenon {
-                chooseWeatherIcon(phenomenon: phenomenon)
+                chooseWeatherIcon(phenomenon: phenomenon.lowercased())
                 return
             }
             icon = nil
@@ -81,7 +92,7 @@ class ForecastDate {
         }
     }
     private var tempPhrase: String?
-    var icon: String?
+    var icon: WeatherPhenomenon?
     
     init(type: xmlElements) {
         self.type = type
@@ -106,17 +117,17 @@ class ForecastDate {
     
     private func chooseWeatherIcon(phenomenon: String) {
         if phenomenon.contains("cloud") {
-            icon = "☁️"
+            icon = .cloud
         } else if phenomenon.contains("sun") {
-            icon = "🌝"
+            icon = .sun
         } else if phenomenon.contains("rain") {
-            icon = "🌧"
+            icon = .rain
         } else if phenomenon.contains("snow") {
-            icon = "☃️"
+            icon = .snow
         } else if phenomenon.contains("sleet") {
-            icon = "🌨"
+            icon = .sleet
         } else {
-            icon = "🌈"
+            icon = .rainbow
         }
     }
     

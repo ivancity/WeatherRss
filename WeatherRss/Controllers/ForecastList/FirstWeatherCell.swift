@@ -19,7 +19,7 @@ class FirstWeatherCell: UITableViewCell {
     private let dayWeatherText = UILabel()
     private let dayTempContainer = UIView()
     private let dayWindContainer = UIView()
-    private let dayIcon = UILabel()
+    private let dayIcon = UIImageView(frame: CGRect(x:0, y:0, width:100, height: 100))
     //night views
     private let nightLabel = UILabel()
     private let nightTempMaxLabel = UILabel()
@@ -30,7 +30,7 @@ class FirstWeatherCell: UITableViewCell {
     private let nightWeatherText = UILabel()
     private let nightTempContainer = UIView()
     private let nightWindContainer = UIView()
-    private let nightIcon = UILabel()
+    private let nightIcon = UIImageView(frame: CGRect(x:0, y:0, width:100, height: 100))
     //other views
     private let date = UILabel()
     private let margin = 10
@@ -100,9 +100,8 @@ class FirstWeatherCell: UITableViewCell {
     
     private func dayViewStyles() {
         dayLabel.font = UIFont.systemFont(ofSize: 18)
-        dayIcon.font = UIFont.systemFont(ofSize: 48)
-        dayTempMaxLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        dayWindMaxLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        dayTempMaxLabel.font = UIFont.boldSystemFont(ofSize: 28)
+        dayWindMaxLabel.font = UIFont.boldSystemFont(ofSize: 28)
         dayTempMinLabel.font = UIFont.systemFont(ofSize: 18)
         dayWindMinLabel.font = UIFont.systemFont(ofSize: 18)
         dayTempDescription.font = UIFont.systemFont(ofSize: 14)
@@ -121,9 +120,8 @@ class FirstWeatherCell: UITableViewCell {
     
     private func nightViewStyles() {
         nightLabel.font = UIFont.systemFont(ofSize: 18)
-        nightIcon.font = UIFont.systemFont(ofSize: 48)
-        nightTempMaxLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        nightWindMaxLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        nightTempMaxLabel.font = UIFont.boldSystemFont(ofSize: 28)
+        nightWindMaxLabel.font = UIFont.boldSystemFont(ofSize: 28)
         nightTempMinLabel.font = UIFont.systemFont(ofSize: 18)
         nightWindMinLabel.font = UIFont.systemFont(ofSize: 18)
         nightTempDescription.font = UIFont.systemFont(ofSize: 14)
@@ -276,7 +274,10 @@ class FirstWeatherCell: UITableViewCell {
     func set(_ forecast: Forecast) {
         date.text = forecast.date
         //day binding
-        dayIcon.text = forecast.day?.icon
+        dayIcon.image = resizeImage(
+            image: UIImage(named: (forecast.day?.icon?.rawValue)!)!,
+            newWidth: 100
+        )
         dayTempMaxLabel.text = forecast.day?.tempMaxFormatted
         dayTempMinLabel.text = forecast.day?.tempMinFormatted
         dayWindMaxLabel.text = forecast.day?.windMaxFormatted
@@ -284,7 +285,10 @@ class FirstWeatherCell: UITableViewCell {
         dayTempDescription.text = forecast.day?.temperatureAsPhrase()
         dayWeatherText.text = "\((forecast.day?.description)!)"
         //night binding
-        nightIcon.text = forecast.night?.icon
+        nightIcon.image = resizeImage(
+            image: UIImage(named: (forecast.night?.icon?.rawValue)!)!,
+            newWidth: 100
+        )
         nightTempMaxLabel.text = forecast.night?.tempMaxFormatted
         nightTempMinLabel.text = forecast.night?.tempMinFormatted
         nightWindMaxLabel.text = forecast.night?.windMaxFormatted
@@ -292,4 +296,13 @@ class FirstWeatherCell: UITableViewCell {
         nightTempDescription.text = forecast.night?.temperatureAsPhrase()
         nightWeatherText.text = "\((forecast.night?.description)!)"
     }
+    
+    private func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newWidth))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newWidth))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+    
 }

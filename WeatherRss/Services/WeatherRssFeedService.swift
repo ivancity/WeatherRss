@@ -19,7 +19,10 @@ class WeatherRssFeedService {
                 completion(nil)
                 return
             }
-            guard let incomingData = data else { return }
+            guard let incomingData = data else {
+                completion(nil)
+                return
+            }
             let manager = WeatherDataManager(data: incomingData)
             let forecasts = manager.allForecast
             DispatchQueue.main.async {
