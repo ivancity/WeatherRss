@@ -9,8 +9,31 @@
 import Foundation
 
 class DetailViewModel {
-    var forecasts: Forecasts?
+    private var forecast: Forecast?
+    
+    var numberOfSections: Int {
+        return 1
+    }
+    var numberOfRows: Int {
+        if let num = forecast?.day?.placeArray?.count {
+            return num
+        }
+        return 0
+    }
+
     init(forecasts: Forecasts?) {
-        self.forecasts = forecasts
+        self.forecast = forecasts?.forecasts?[0]
+    }
+    
+    func row(at indexPath: IndexPath) -> (Place?, Place?) {
+        guard let placeDay = forecast?.day?.placeArray?[indexPath.row] else {
+            return (nil, nil)
+        }
+        
+        guard let placeNight = forecast?.night?.placeArray?[indexPath.row] else {
+            return (nil, nil)
+        }
+        
+        return (placeDay, placeNight)
     }
 }

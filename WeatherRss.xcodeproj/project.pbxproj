@@ -30,6 +30,7 @@
 		19663CF71E534AAC00489A2A /* DetailListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19663CF61E534AAC00489A2A /* DetailListCoordinator.swift */; };
 		19663CF91E534B7E00489A2A /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19663CF81E534B7E00489A2A /* DetailViewModel.swift */; };
 		19663CFB1E534BDE00489A2A /* DetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19663CFA1E534BDE00489A2A /* DetailListViewController.swift */; };
+		19663CFD1E53524300489A2A /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19663CFC1E53524300489A2A /* DetailCell.swift */; };
 		196C50001E3214F300BB4CA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196C4FFF1E3214F300BB4CA1 /* AppDelegate.swift */; };
 		196C50071E3214F300BB4CA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 196C50061E3214F300BB4CA1 /* Assets.xcassets */; };
 		196C50121E321D2900BB4CA1 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 196C50111E321D2900BB4CA1 /* Podfile */; };
@@ -62,6 +63,7 @@
 		19663CF61E534AAC00489A2A /* DetailListCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailListCoordinator.swift; path = Controllers/DetailsList/DetailListCoordinator.swift; sourceTree = "<group>"; };
 		19663CF81E534B7E00489A2A /* DetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailViewModel.swift; path = Controllers/DetailsList/DetailViewModel.swift; sourceTree = "<group>"; };
 		19663CFA1E534BDE00489A2A /* DetailListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailListViewController.swift; sourceTree = "<group>"; };
+		19663CFC1E53524300489A2A /* DetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailCell.swift; path = Controllers/DetailsList/DetailCell.swift; sourceTree = "<group>"; };
 		196C4FFC1E3214F300BB4CA1 /* WeatherRss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherRss.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		196C4FFF1E3214F300BB4CA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		196C50061E3214F300BB4CA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				19663CF61E534AAC00489A2A /* DetailListCoordinator.swift */,
 				19663CF81E534B7E00489A2A /* DetailViewModel.swift */,
 				19663CFA1E534BDE00489A2A /* DetailListViewController.swift */,
+				19663CFC1E53524300489A2A /* DetailCell.swift */,
 			);
 			name = DetailsList;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 			files = (
 				195A7A6E1E3227DC006FA6B4 /* AppCoordinator.swift in Sources */,
 				195A7A8B1E35FF6E006FA6B4 /* Place.swift in Sources */,
+				19663CFD1E53524300489A2A /* DetailCell.swift in Sources */,
 				196C50001E3214F300BB4CA1 /* AppDelegate.swift in Sources */,
 				195A7A871E35FCDF006FA6B4 /* ForecastDate.swift in Sources */,
 				19AF3E151E38A9E90097EC5C /* UIColor+Extensions.swift in Sources */,
