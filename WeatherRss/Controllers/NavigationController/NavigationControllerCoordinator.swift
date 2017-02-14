@@ -12,12 +12,15 @@ import UIKit
 class NavigationControllerCoordinator: Coordinator {
     
     fileprivate let tableViewCoordinator: TableViewCoordinator
+    fileprivate let detailListCoordinator: DetailListCoordinator
     private var forecasts: Forecasts?
     fileprivate let navController = UINavigationController()
     
     init(forecasts: Forecasts?) {
         self.forecasts = forecasts
         tableViewCoordinator = TableViewCoordinator(forecasts: forecasts)
+        detailListCoordinator = DetailListCoordinator(forecasts: forecasts)
+        tableViewCoordinator.coordinatorDelegate = self
     }
     
     func start() -> UIViewController {
@@ -29,6 +32,14 @@ class NavigationControllerCoordinator: Coordinator {
         let forecastListVC = tableViewCoordinator.start()
         navController.viewControllers = [forecastListVC]
         return navController
+    }
+    
+}
+
+extension NavigationControllerCoordinator: TableViewModelCoordinatorCoordinatorDelegate {
+    func openDetailList() {
+        let detailListVC = detailListCoordinator.start()
+        navController.pushViewController(detailListVC, animated: true)
     }
 }
 

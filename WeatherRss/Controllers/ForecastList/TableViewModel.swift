@@ -13,6 +13,10 @@ protocol ListViewModel {
     func row(at indexPath: IndexPath) -> Value?
 }
 
+protocol TableViewModelCoordinatorDelegate: class {
+    func openDetailList()
+}
+
 class TableViewModel {
     
     enum Row {
@@ -20,12 +24,12 @@ class TableViewModel {
         case forecast(Forecast)
     }
     
-    fileprivate var forecasts: Forecasts?
+    weak var coordinatorDelegate: TableViewModelCoordinatorDelegate?
     
+    fileprivate var forecasts: Forecasts?
     var numberOfSections: Int {
         return 1
     }
-    
     var numberOfRows: Int {
         guard let forecasts = forecasts,
             let forecastArray = forecasts.forecasts else {
@@ -37,6 +41,10 @@ class TableViewModel {
     
     init(forecasts: Forecasts?) {
         self.forecasts = forecasts
+    }
+    
+    func forecastSelected() {
+        coordinatorDelegate?.openDetailList()
     }
 }
 

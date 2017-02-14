@@ -8,17 +8,29 @@
 
 import UIKit
 
+protocol TableViewModelCoordinatorCoordinatorDelegate: class {
+    func openDetailList()
+}
+
 class TableViewCoordinator: Coordinator {
     
     private let viewModel: TableViewModel
     private let listVC: ForecastListViewController
+    weak var coordinatorDelegate: TableViewModelCoordinatorCoordinatorDelegate?
     
     init(forecasts: Forecasts?) {
         viewModel = TableViewModel(forecasts: forecasts)
         listVC = ForecastListViewController(viewModel: viewModel)
+        viewModel.coordinatorDelegate = self
     }
     
     func start() -> UIViewController {
         return listVC
+    }
+}
+
+extension TableViewCoordinator: TableViewModelCoordinatorDelegate {
+    func openDetailList() {
+        coordinatorDelegate?.openDetailList()
     }
 }

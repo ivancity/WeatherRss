@@ -64,7 +64,9 @@ extension ForecastListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TODO go to Details of Forecast chosen
+        if indexPath.row == 0 {
+            viewModel.forecastSelected()
+        }
     }
 }
 
