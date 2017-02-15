@@ -36,9 +36,9 @@ class DetailCell: UITableViewCell {
         cityName.font = UIFont.boldSystemFont(ofSize: 18)
         dayValues.font = UIFont.systemFont(ofSize: 16)
         nightValues.font = UIFont.systemFont(ofSize: 16)
-        cityName.textColor = .whiteTwo
-        dayValues.textColor = .whiteThree
-        nightValues.textColor = .whiteThree
+        cityName.textColor = .whiteThree
+        dayValues.textColor = .white
+        nightValues.textColor = .gray
     }
     
     private func addViewConstraints() {

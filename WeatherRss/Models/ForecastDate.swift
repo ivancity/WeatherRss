@@ -126,6 +126,10 @@ class ForecastDate {
             icon = .snow
         } else if phenomenon.contains("sleet") {
             icon = .sleet
+        } else if phenomenon.contains("glaze") {
+            icon = .glaze
+        } else if phenomenon.contains("mist") {
+            icon = .mist
         } else {
             icon = .rainbow
         }
